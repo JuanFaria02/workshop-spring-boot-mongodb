@@ -4,7 +4,6 @@ import com.juanfaria.workshopmongo.domain.User;
 import com.juanfaria.workshopmongo.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
 import com.juanfaria.workshopmongo.services.UserService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
