@@ -50,4 +50,5 @@ public class UserServiceTest {
         User objNew = new User("643d4c3ee50f1b185c33d831", "Jonah Rest", "jonah@gmail.com");
         Assertions.assertEquals(objOld, objNew);
     }
+
 }
