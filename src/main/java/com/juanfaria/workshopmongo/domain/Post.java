@@ -18,6 +18,7 @@ public class Post implements Serializable {
     private String title;
     private String body;
     private AuthorDto author;
+
     public Post(){
     }
 

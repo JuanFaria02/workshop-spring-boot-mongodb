@@ -1,6 +1,9 @@
 package com.juanfaria.workshopmongo.servicesTests;
 
+import com.juanfaria.workshopmongo.domain.Post;
 import com.juanfaria.workshopmongo.domain.User;
+import com.juanfaria.workshopmongo.dto.AuthorDto;
+import com.juanfaria.workshopmongo.repository.PostRepository;
 import com.juanfaria.workshopmongo.repository.UserRepository;
 import com.juanfaria.workshopmongo.services.UserService;
 import com.juanfaria.workshopmongo.services.exceptions.ObjectNotFoundException;
@@ -9,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.Instant;
+
 
 @SpringBootTest
 public class UserServiceTest {
@@ -16,6 +21,8 @@ public class UserServiceTest {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostRepository postRepository;
     @Test
     void testInsert(){
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
@@ -51,4 +58,16 @@ public class UserServiceTest {
         Assertions.assertEquals(objOld, objNew);
     }
 
+    @Test
+    void testReferencePost(){
+        User obj = userService.findById("643d6b10c058b01fb977eaa5");
+
+        Post post = new Post(null, Instant.now(), "Lorem", "Vou viajar, abraço!",
+                new AuthorDto(obj));
+        postRepository.save(post);
+        obj.getPosts().add(post);
+
+        userRepository.save(obj);
+        Assertions.assertEquals(userService.findById("643d6b10c058b01fb977eaa5").getPosts().get(0), post);
+    }
 }

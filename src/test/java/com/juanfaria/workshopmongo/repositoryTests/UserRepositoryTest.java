@@ -1,6 +1,7 @@
 package com.juanfaria.workshopmongo.repositoryTests;
 
 import com.juanfaria.workshopmongo.domain.User;
+import com.juanfaria.workshopmongo.dto.AuthorDto;
 import com.juanfaria.workshopmongo.repository.UserRepository;
 import com.juanfaria.workshopmongo.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Optional;
 
