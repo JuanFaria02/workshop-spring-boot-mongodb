@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -66,8 +67,12 @@ public class PostRepositoryTest {
         Assertions.assertEquals(cm.getText(), cm2.getText());
         Assertions.assertEquals(cm.getAuthorDto().getName(), cm2.getAuthorDto().getName());
         Assertions.assertEquals(cm.getAuthorDto().getId(), cm2.getAuthorDto().getId());
-
-
+    }
+    @Test
+    void testFindByTitle(){
+        Optional<Post> post = postRepository.findById("643eace70f0eb63184df869c");
+        List<Post> posts = postRepository.findByTitleContainingIgnoreCase("Partiu");
+        Assertions.assertEquals(posts.get(0).getId(), post.get().getId());
     }
 
 }
