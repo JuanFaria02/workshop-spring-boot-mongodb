@@ -1,13 +1,12 @@
 package com.juanfaria.workshopmongo.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.juanfaria.workshopmongo.dto.AuthorDto;
 import com.juanfaria.workshopmongo.dto.CommentDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,8 +15,7 @@ import java.util.Objects;
 public class Post implements Serializable {
     @Id
     private String id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
-    private Instant date;
+    private LocalDateTime date;
     private String title;
     private String body;
     private AuthorDto author;
@@ -27,7 +25,7 @@ public class Post implements Serializable {
     public Post(){
     }
 
-    public Post(String id, Instant date, String title, String body, AuthorDto author) {
+    public Post(String id, LocalDateTime date, String title, String body, AuthorDto author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -43,11 +41,11 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

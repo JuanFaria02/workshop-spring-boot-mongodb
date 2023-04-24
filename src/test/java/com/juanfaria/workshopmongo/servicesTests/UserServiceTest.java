@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 
 @SpringBootTest
@@ -62,7 +62,7 @@ public class UserServiceTest {
     void testReferencePost(){
         User obj = userService.findById("643d6b10c058b01fb977eaa5");
 
-        Post post = new Post(null, Instant.now(), "Lorem", "Vou viajar, abraço!",
+        Post post = new Post(null, LocalDateTime.now(), "Lorem", "Vou viajar, abraço!",
                 new AuthorDto(obj));
         postRepository.save(post);
         obj.getPosts().add(post);

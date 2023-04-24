@@ -1,20 +1,19 @@
 package com.juanfaria.workshopmongo.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
-import java.time.Instant;
+
+import java.time.LocalDateTime;
 
 public class CommentDto implements Serializable {
     private String text;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
-    private Instant date;
+    private LocalDateTime date;
     private AuthorDto authorDto;
 
     public CommentDto(){
     }
 
-    public CommentDto(String text, Instant date, AuthorDto authorDto) {
+    public CommentDto(String text, LocalDateTime date, AuthorDto authorDto) {
         this.text = text;
         this.date = date;
         this.authorDto = authorDto;
@@ -28,11 +27,11 @@ public class CommentDto implements Serializable {
         this.text = text;
     }
 
-    public Instant getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

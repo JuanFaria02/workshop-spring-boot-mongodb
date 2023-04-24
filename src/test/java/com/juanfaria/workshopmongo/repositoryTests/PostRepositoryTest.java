@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +24,9 @@ public class PostRepositoryTest {
 
     @Test
     void testInsert(){
-        Post obj1 = new Post(null, Instant.now(), "Partiu Viajem", "Vou viajar para São Paulo, abraço!",
+        Post obj1 = new Post(null, LocalDateTime.now(), "Partiu Viajem", "Vou viajar para São Paulo, abraço!",
                 new AuthorDto(userService.findAll().get(0)));
-        Post obj2 = new Post(null, Instant.now(), "Bom dia!", "Acordei feliz hoje!",
+        Post obj2 = new Post(null, LocalDateTime.now(), "Bom dia!", "Acordei feliz hoje!",
                new AuthorDto(userService.findAll().get(0)));
         postRepository.saveAll(Arrays.asList(obj1, obj2));
         Assertions.assertTrue(obj1.getId()!=null && obj2.getId() != null);
@@ -34,7 +34,7 @@ public class PostRepositoryTest {
 
     @Test
     void testDelete(){
-        Post obj = new Post(null, Instant.now(), "Partiu", "Vou viajar, abraço!",
+        Post obj = new Post(null, LocalDateTime.now(), "Partiu", "Vou viajar, abraço!",
                 new AuthorDto(userService.findAll().get(0)));
         postRepository.save(obj);
         postRepository.deleteById(obj.getId());
@@ -44,20 +44,20 @@ public class PostRepositoryTest {
 
     @Test
     void testFindById(){
-        Post obj = new Post(null, Instant.now(), "Partiu", "Vou viajar, abraço!",
+        Post obj = new Post(null, LocalDateTime.now(), "Partiu", "Vou viajar, abraço!",
                 new AuthorDto(userService.findAll().get(0)));
         postRepository.save(obj);
         Assertions.assertEquals(obj, postRepository.findById(obj.getId()).get());
     }
     @Test
     void testInsertComments() {
-        Post obj = new Post(null, Instant.now(), "Partiu jogo", "Vou jogar em São Paulo, abraço!",
+        Post obj = new Post(null, LocalDateTime.now(), "Partiu jogo", "Vou jogar em São Paulo, abraço!",
                 new AuthorDto(userService.findAll().get(0)));
 
         postRepository.save(obj);
 
         obj.getComments().add(new CommentDto("Boa sorte!",
-                Instant.now(),
+                LocalDateTime.now(),
                 new AuthorDto(userService.findAll().get(2))));
         CommentDto cm = obj.getComments().get(0);
 
